@@ -10,7 +10,7 @@ class SearchForm extends Component{
     }
     render() {
         return(
-            <form className='saerch-form'>
+            <form className='search-form'>
                 <input
                     type='text'
                     placeholder='Search'
