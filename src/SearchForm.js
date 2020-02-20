@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchForm{
+    render() {
+
+    };
 
 }
 export default SearchForm;

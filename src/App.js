@@ -5,6 +5,10 @@ import {
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import Nav from './Nav';
+import Gallery from './Gallery';
+import SearchForm from './SearchForm';
+import NotFound from './NotFound';
 
 function App() {
   return (
