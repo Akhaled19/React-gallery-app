@@ -8,7 +8,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
-import NotFound from './components/NotFound';
+
 
 class App extends Component{
   render() {
@@ -18,7 +18,6 @@ class App extends Component{
           <SearchForm />
           <Nav />
           <Gallery />
-          <NotFound />
         </div>
       </BrowserRouter> 
     );
