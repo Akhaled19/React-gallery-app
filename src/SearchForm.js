@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+//SearchForm component where data can be managed with state
 class SearchForm extends Component{
     UserInput = React.createRef();
     handleSubmit = (e) => {
