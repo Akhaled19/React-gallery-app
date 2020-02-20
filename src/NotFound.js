@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 function NotFound() {
     return(
         <li>
-            <h3></h3>
-            <p></p>
+            <h3>No Results Found</h3>
+            <p>You search did not return any results. Please try again.</p>
         </li>
     );
 }

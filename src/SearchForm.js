@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class SearchForm{
+class SearchForm extends Component{
+    UserInput = React.createRef();
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props
+    }
     render() {
-        <form className='saerch-form'>
-            <input
-                type='text'
-                placeholder='Search'
-            />
-            <input 
-                type='submit'
-                
-            />
-        </form>
+        return(
+            <form className='saerch-form'>
+                <input
+                    type='text'
+                    placeholder='Search'
+                />
+                <input 
+                    type='submit'
 
+                />
+            </form>
+        );
     };
 
 }
