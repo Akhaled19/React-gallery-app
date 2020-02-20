@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 //SearchForm component where data can be managed with state
 class SearchForm extends Component{
-    UserInput = React.createRef();
+    /*UserInput = React.createRef();
     handleSubmit = (e) => {
         e.preventDefault();
         this.props
     }
+    */
     render() {
         return(
             <form className='search-form'>
@@ -15,9 +16,9 @@ class SearchForm extends Component{
                     type='text'
                     placeholder='Search'
                 />
-                <input 
+                <button 
                     type='submit'
-
+                    className='search-button'
                 />
             </form>
         );

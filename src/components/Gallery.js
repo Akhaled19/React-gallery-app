@@ -7,7 +7,10 @@ class Gallery extends Component {
     render() {
         return(
             <div className='photo-container'>
-                <Photo />
+                <h2>Results</h2>
+                <ul>
+                    <Photo />
+                </ul>     
             </div>
         );
     }

@@ -1,36 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter,
   Route
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Nav from './Nav';
-import Gallery from './Gallery';
-import SearchForm from './SearchForm';
-import NotFound from './NotFound';
+import Nav from './components/Nav';
+import Gallery from './components/Gallery';
+import SearchForm from './components/SearchForm';
+import NotFound from './components/NotFound';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    </BrowserRouter> 
-  );
+class App extends Component{
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="container">
+          <SearchForm />
+          <Nav />
+          <Gallery />
+          <NotFound />
+        </div>
+      </BrowserRouter> 
+    );
+  }
 }
 
 export default App;
