@@ -8,7 +8,10 @@
         //Goal: your app's users will only need to enter in an API key once
 //The file should look something like this 
 
-/* 
-const apiKey = 'YOUR API KEY';
-export default apiKey
-*/
+var config = {
+    My_Key: 'b796f31f5e8da0096fcb69b30b41eebd',
+    My_Secret: '96a5fd37c0766cc8'
+
+}
+
+export default config;
