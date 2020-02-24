@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import Config from './Config';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
