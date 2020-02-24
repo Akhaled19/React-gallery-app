@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Photo from './Photo';
-import NotFound from './NotFound';
+
 
 //photo container where data can be managed with state
 class Gallery extends Component {

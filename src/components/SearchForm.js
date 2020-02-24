@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 //SearchForm component where data can be managed with state
 class SearchForm extends Component{

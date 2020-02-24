@@ -3,15 +3,35 @@ import {
   BrowserRouter,
   Route
 } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
-import Config from '../Config';
+import axios from 'axios';
+import Config from './Config';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
+import config from './Config';
+
 
 
 class App extends Component{
+
+  state = {
+    images: []
+  };
+
+  componentDidMount() {
+    axios.get(config.My_Key)
+      .then( response => {
+        this.setState({
+          images:response.data.data
+        });
+      })
+      .catch( error => {
+        console.log('Error fetching and parsing data', error);
+      });
+
+  }
+
   render() {
     return (
       <BrowserRouter>
