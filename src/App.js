@@ -3,14 +3,14 @@ import {
   BrowserRouter,
   Route
 } from 'react-router-dom';
-import './App.css';
+
 import axios from 'axios';
-import Config from './Config';
+import config from './Config';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
-import config from './Config';
 
+import './index.css';
 
 
 class App extends Component{
@@ -20,7 +20,7 @@ class App extends Component{
   };
 
   componentDidMount() {
-    axios.get(config.My_Key)
+    axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=sea%2C+vintage%2C+Winter+Forest&per_page=&format=json&nojsoncallback=1`)
       .then( response => {
         this.setState({
           images:response.data.data
