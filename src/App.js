@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Link
 } from 'react-router-dom';
 
 import axios from 'axios';
@@ -12,18 +13,24 @@ import SearchForm from './components/SearchForm';
 
 import './index.css';
 
+//save the url as a variable 
+const flickrURL = ` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=sea%2C+vintage%2C+Winter+Forest&per_page=&format=json&nojsoncallback=1`;
+class App extends Component {
 
-class App extends Component{
-
-  state = {
-    images: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      photos: []
+    };
+  }
+  
 
   componentDidMount() {
-    axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=sea%2C+vintage%2C+Winter+Forest&per_page=&format=json&nojsoncallback=1`)
+    axios.get(flickrURL)
       .then( response => {
+        //console.log(response);
         this.setState({
-          images:response.data.data
+          photos: response.data.data
         });
       })
       .catch( error => {
@@ -33,12 +40,13 @@ class App extends Component{
   }
 
   render() {
+    console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
           <SearchForm />
           <Nav />
-          <Gallery />
+          <Gallery data={this.state.photos} />
         </div>
       </BrowserRouter> 
     );

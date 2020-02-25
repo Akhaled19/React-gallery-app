@@ -3,7 +3,7 @@ import React from 'react';
 import NotFound from './NotFound';
 
 //Photo component that displays the li and img elements 
-function Photo() {
+function Photo(props) {
         return(
             <li>
                 <img src='' />
