@@ -26,7 +26,7 @@ class App extends Component {
   //importing the data
   dataGetter = (navQuery) => {
     //save the url as a variable 
-    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&per_page=24&format=json&nojsoncallback=1`;
+    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=sea%2C+vintage%2C+Winter+Fores&per_page=24&format=json&nojsoncallback=1`;
     
     axios.get(flickrURL)
       .then( response => {
@@ -34,7 +34,6 @@ class App extends Component {
         this.setState({
           photos: response.data.photos
         })
-        console.log(this.response);
       })
       .catch( error => {
         //handle error
@@ -50,7 +49,7 @@ class App extends Component {
         <div className="container">
           <SearchForm />
           <Nav />
-          <Gallery data={this.state.photos} />
+          <Gallery  />
         </div>
       </BrowserRouter> 
     );
