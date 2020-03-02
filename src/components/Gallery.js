@@ -13,7 +13,7 @@ class Gallery extends Component {
         let photoArray;
         if(result.length > 0) {
             photoArray =  result.map(photo => {
-                const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+                const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
                 console.log(photoArray);
                 return(
                         <Photo url={url} key={photo.id}/>

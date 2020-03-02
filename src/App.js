@@ -12,7 +12,7 @@ import SearchForm from './components/SearchForm';
 
 import './index.css';
 
-const navQuery = 'sea%2C+clouds%2C+pink';
+const navQuery = 'sea%2C+clouds%2C+statue&color_codes=b';
 
 class App extends Component {
 
