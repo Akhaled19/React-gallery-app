@@ -12,6 +12,7 @@ import SearchForm from './components/SearchForm';
 
 import './index.css';
 
+const navQuery = 'sea%2C+clouds%2C+pink';
 
 class App extends Component {
 
@@ -23,16 +24,16 @@ class App extends Component {
     console.log(e.target);
   }
 
-  //importing the data
-  dataGetter = (navQuery) => {
+  //server request
+  search = () => {
     //save the url as a variable 
-    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=sea%2C+vintage%2C+Winter+Fores&per_page=24&format=json&nojsoncallback=1`;
+    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${navQuery}&per_page=24&format=json&nojsoncallback=1`;
     
     axios.get(flickrURL)
       .then( response => {
         //handle data
         this.setState({
-          photos: response.data.photos
+          photos: response.data.photos.photo
         })
       })
       .catch( error => {
@@ -41,6 +42,9 @@ class App extends Component {
       })
   }
 
+  componentDidMount() {
+    this.search();
+  }
 
   render() {
     console.log(this.state.photos);
@@ -49,7 +53,7 @@ class App extends Component {
         <div className="container">
           <SearchForm />
           <Nav />
-          <Gallery  />
+          <Gallery  data={this.state.photos} />
         </div>
       </BrowserRouter> 
     );
