@@ -24,8 +24,8 @@ class App extends Component {
     console.log(e.target);
   }
 
-  //server request
-  search = () => {
+  //nav links render
+  navSearch = () => {
     //save the url as a variable 
     const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${navQuery}&per_page=24&format=json&nojsoncallback=1`;
     
@@ -43,15 +43,33 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.search();
+    this.navSearch();
   }
+
+  //flickr search feature 
+  performSearch = (query) => {
+    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
+    
+    axios.get(flickrURL)
+      .then( response => {
+        //handle data
+        this.setState({
+          photos: response.data.photos.photo
+        })
+      })
+      .catch( error => {
+        //handle error
+        console.log(error);
+      })
+  }
+  
 
   render() {
     console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm />
+          <SearchForm onSearch={this.performSearch}/>
           <Nav />
           <Gallery  data={this.state.photos} />
         </div>

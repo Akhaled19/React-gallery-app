@@ -3,18 +3,30 @@ import React, { Component } from 'react';
 
 //SearchForm component where data can be managed with state
 class SearchForm extends Component{
-    /*UserInput = React.createRef();
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props
+
+    state = {
+        searchText: ''
     }
-    */
+
+    onSearchChange = e => {
+        this.setState({
+            searchText: e.target.value
+        })
+    }
+    
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.onSearch(this.state.searchText);
+        e.currentTarget.reset();
+    }
+    
     render() {
         return(
-            <form className='search-form'>
+            <form className='search-form' onSubmit={this.handleSubmit} >
                 <input
-                    type='text'
-                    placeholder='Search'
+                    type='search'
+                    placeholder='Search...'
+                    onChange={this.onSearchChange}
                 />
                 <button 
                     type='submit'
