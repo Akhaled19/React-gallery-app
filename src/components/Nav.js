@@ -7,7 +7,7 @@ function Nav(props) {
     
     return(
        <nav className='main-nav'>
-           <ul>
+           <ul className='.list-inline'>
                <li><NavLink to=''>Sea</NavLink></li>
                <li><NavLink to=''>Clouds</NavLink></li>
                <li><NavLink to=''>Statue</NavLink></li>
