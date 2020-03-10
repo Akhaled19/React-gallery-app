@@ -1,52 +1,67 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter,
+  Switch,
   Route,
+  Redirect
 } from 'react-router-dom';
 
 import axios from 'axios';
 import config from './Config';
+import './index.css';
+
+//import components 
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
 
-import './index.css';
 
-const navQuery = 'sea%2C+clouds%2C+statue&color_codes=b';
+//const navQuery = 'sea%2C+clouds%2C+nature';
 
 class App extends Component {
 
-    state = {
-      photos: [],
-    }
-  
-  handleClick = (e) =>  {
-    console.log(e.target);
-  }
-
-  //nav links render
-  navSearch = () => {
-    //save the url as a variable 
-    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${navQuery}&per_page=24&format=json&nojsoncallback=1`;
+  state = {
+    //initial props state 
+    photos: [],
     
-    axios.get(flickrURL)
-      .then( response => {
-        //handle data
-        this.setState({
-          photos: response.data.photos.photo
-        })
-      })
-      .catch( error => {
-        //handle error
-        console.log(error);
-      })
+    query: '',
+    isLoading: true,
   }
 
   componentDidMount() {
     this.navSearch();
+    this.performSearch();
   }
 
-  //flickr search feature 
+  //retrieve data for nav links
+  navSearch = (query) => {
+    //save the url as a variable 
+    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
+    
+    axios.get(flickrURL)
+    //handle data & setting the value back to false 
+      .then( response => { 
+        console.log(query);
+        this.setState({
+          //sets query props to the current selected tag 
+          queryString: query,
+          //sets retrieved api data to the photos array
+          photos: response.data.photos.photo,
+          isLoading: false
+        });
+      })
+      .catch( error => {
+        //handle error
+        console.log('Error fetching and parsing data', error);
+      });
+
+      //resetting isLoading to true so that 'Loading...' message show on any API call load.
+      this.setState({isLoading: true});
+  }
+
+ 
+
+  //retrieve data for search input 
   performSearch = (query) => {
     const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
     
@@ -54,15 +69,18 @@ class App extends Component {
       .then( response => {
         //handle data
         this.setState({
-          photos: response.data.photos.photo
+          queryString: query,
+          photos: response.data.photos.photo,
+          isLoading: false
         })
       })
       .catch( error => {
         //handle error
-        console.log(error);
+        console.log('Error fetching and parsing data', error);
       })
   }
-  
+
+ 
 
   render() {
     console.log(this.state.photos);
@@ -70,8 +88,13 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <SearchForm onSearch={this.performSearch}/>
-          <Nav />
-          <Gallery  data={this.state.photos} />
+          <Nav fetchData={this.navSearch}/>
+          <Switch> 
+            <Route path='/' render={ () => <Redirect to='/kittens'/> } />
+            <Route path='/sea' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
+            <Route path='/clouds' render={ (props) => <Gallery {...props} data={this.state.photos}  query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />
+            <Route path='/nature' render={ (props) => <Gallery {...props} data={this.state.photos}  query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />
+          </Switch>
         </div>
       </BrowserRouter> 
     );

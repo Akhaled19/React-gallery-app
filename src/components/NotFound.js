@@ -3,7 +3,7 @@ import React from 'react';
 
 //NotFound component for displaying a user friendly message when the 
 //search return no results 
-function NotFound(props) {
+const NotFound = () => {
     return(
         <li className='not-found'>
             <h3>No Results Found</h3>

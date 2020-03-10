@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 //import PropTypes from 'prop-types';
 import Photo from './Photo';
 import NotFound from './NotFound';
@@ -21,16 +21,24 @@ class Gallery extends Component {
             });    
         } else {
             return(
-                <NotFound />
+               <NotFound />
             );
         }    
     
         return(
             <div className='photo-container'>
-                <h2>Results</h2>
-                <ul>
-                    {photoArray}
-                </ul>     
+                {
+                    (this.props.isLoading)
+                    ? <p>Loading...</p>
+                    :
+                    <Fragment>
+                        <h2>Results</h2>
+                        <ul>
+                            {photoArray}
+                        </ul>
+                    </Fragment>
+                }
+                     
             </div>
         );
     
