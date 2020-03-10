@@ -3,7 +3,7 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect
+  
 } from 'react-router-dom';
 
 import axios from 'axios';
@@ -22,16 +22,12 @@ class App extends Component {
 
   state = {
     //initial props state 
-    photos: [],
-    
-    query: '',
+    photos: [], 
+    queryString: '',
     isLoading: true,
   }
 
-  componentDidMount() {
-    this.navSearch();
-    this.performSearch();
-  }
+
 
   //retrieve data for nav links
   navSearch = (query) => {
@@ -41,7 +37,6 @@ class App extends Component {
     axios.get(flickrURL)
     //handle data & setting the value back to false 
       .then( response => { 
-        console.log(query);
         this.setState({
           //sets query props to the current selected tag 
           queryString: query,
@@ -52,7 +47,7 @@ class App extends Component {
       })
       .catch( error => {
         //handle error
-        console.log('Error fetching and parsing data', error);
+        console.log('Error fetching and parsing data: ', error);
       });
 
       //resetting isLoading to true so that 'Loading...' message show on any API call load.
@@ -76,21 +71,27 @@ class App extends Component {
       })
       .catch( error => {
         //handle error
-        console.log('Error fetching and parsing data', error);
+        console.log('Error fetching and parsing data: ', error);
       })
+
+      //resetting isLoading to true so that 'Loading...' message show on any API call load.
+      this.setState({isLoading: true});
   }
 
- 
+  componentDidMount() {
+    this.navSearch();
+    this.performSearch();
+  }
 
   render() {
     console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm onSearch={this.performSearch}/>
+          <SearchForm onSearch={this.performSearch} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.navSearch}/>
           <Switch> 
-            <Route path='/' render={ () => <Redirect to='/kittens'/> } />
+            <Route exact path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
             <Route path='/sea' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
             <Route path='/clouds' render={ (props) => <Gallery {...props} data={this.state.photos}  query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />
             <Route path='/nature' render={ (props) => <Gallery {...props} data={this.state.photos}  query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />
