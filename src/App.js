@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Switch,
   Route,
+  Redirect
   
 } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ class App extends Component {
     //initial props state 
     photos: [], 
     queryString: '',
+    kittens: [],
     isLoading: true,
   }
 
@@ -80,6 +82,7 @@ class App extends Component {
 
   componentDidMount() {
     this.navSearch();
+    this.navSearch('kittens')
     this.performSearch();
   }
 
@@ -91,10 +94,10 @@ class App extends Component {
           <SearchForm onSearch={this.performSearch} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.navSearch}/>
           <Switch> 
-            <Route exact path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
-            <Route path='/sea' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
-            <Route path='/clouds' render={ (props) => <Gallery {...props} data={this.state.photos}  query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />
-            <Route path='/nature' render={ (props) => <Gallery {...props} data={this.state.photos}  query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />
+            
+            <Route exact path='/' render={ () => <Redirect to='/kittens' /> } />
+            <Route path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
+            <Route path='/(sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
           </Switch>
         </div>
       </BrowserRouter> 
