@@ -9,7 +9,6 @@ class Gallery extends Component {
 
     render() {
         const result = this.props.data;
-        console.log(result);
         let photoArray;
         if(result.length > 0) {
             photoArray =  result.map(photo => {

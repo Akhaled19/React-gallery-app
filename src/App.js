@@ -96,8 +96,9 @@ class App extends Component {
           <Switch> 
             
             <Route exact path='/' render={ () => <Redirect to='/kittens' /> } />
+           
             <Route path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
-            <Route path='/(sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
+            <Route path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
           </Switch>
         </div>
       </BrowserRouter> 
