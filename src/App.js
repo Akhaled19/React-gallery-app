@@ -25,7 +25,7 @@ class App extends Component {
     //initial props state 
     photos: [], 
     queryString: '',
-    kittens: [],
+    search: '',
     isLoading: true,
   }
 
@@ -70,6 +70,7 @@ class App extends Component {
           photos: response.data.photos.photo,
           isLoading: false
         })
+        console.log(query);
       })
       .catch( error => {
         //handle error
@@ -88,16 +89,14 @@ class App extends Component {
 
   render() {
     console.log(this.state.photos);
-    return (
+    return ( 
       <BrowserRouter>
         <div className="container">
           <SearchForm onSearch={this.performSearch} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.navSearch}/>
-          <Switch> 
-            
+          <Switch>   
             <Route exact path='/' render={ () => <Redirect to='/kittens' /> } />
-           
-            <Route path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
+            <Route exact path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
             <Route path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
           </Switch>
         </div>

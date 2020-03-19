@@ -6,10 +6,12 @@ import NotFound from './NotFound';
 
 //photo container where data can be managed with state
 class Gallery extends Component {
-
+  
     render() {
         const result = this.props.data;
         let photoArray;
+        let title = this.props.query;
+
         if(result.length > 0) {
             photoArray =  result.map(photo => {
                 const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
@@ -31,7 +33,7 @@ class Gallery extends Component {
                     ? <p>Loading...</p>
                     :
                     <Fragment>
-                        <h2>Results</h2>
+                        <h2>{title}</h2>
                         <ul>
                             {photoArray}
                         </ul>

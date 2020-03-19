@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 //import PropTypes from 'prop-types';
 
 //SearchForm component where data can be managed with state
@@ -7,6 +8,7 @@ class SearchForm extends Component{
     state = {
         searchText: ''
     }
+
 
     onSearchChange = e => {
         this.setState({
@@ -19,6 +21,19 @@ class SearchForm extends Component{
         this.props.onSearch(this.state.searchText);
         e.currentTarget.reset();
     }
+
+    // setParams({query}) {
+    //     const url = new URLSearchParams();
+    //     url.set('query', query || "");
+    //     return url.toString();
+    // }
+
+    // componentDidMount() {
+    //    window.location = search;
+    //     console.log(url);
+    //     const params = queryString.parse(window.location);
+    //     console.log(params.searchText);
+    // }
     
     render() {
         return(
