@@ -3,8 +3,7 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect
-  
+  Redirect 
 } from 'react-router-dom';
 
 import axios from 'axios';
@@ -21,18 +20,20 @@ import SearchForm from './components/SearchForm';
 
 class App extends Component {
 
-  state = {
-    //initial props state 
-    photos: [], 
-    queryString: '',
-    search: '',
-    isLoading: true,
+  constructor(props) {
+    //binding THIS keyword to this class
+    super(props);
+    //initial props state
+    this.state = {
+      photos: [], 
+      queryString: '',
+      search: '',
+      isLoading: true,
+    }  
   }
 
-
-
   //retrieve data for nav links
-  navSearch = (query) => {
+  searching = (query) => {
     //save the url as a variable 
     const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
     
@@ -59,32 +60,32 @@ class App extends Component {
  
 
   //retrieve data for search input 
-  performSearch = (query) => {
-    const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
+  // performSearch = (query) => {
+  //   const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
     
-    axios.get(flickrURL)
-      .then( response => {
-        //handle data
-        this.setState({
-          queryString: query,
-          photos: response.data.photos.photo,
-          isLoading: false
-        })
-        console.log(query);
-      })
-      .catch( error => {
-        //handle error
-        console.log('Error fetching and parsing data: ', error);
-      })
+  //   axios.get(flickrURL)
+  //     .then( response => {
+  //       //handle data
+  //       this.setState({
+  //         queryString: query,
+  //         photos: response.data.photos.photo,
+  //         isLoading: false
+  //       })
+  //       console.log(query);
+  //     })
+  //     .catch( error => {
+  //       //handle error
+  //       console.log('Error fetching and parsing data: ', error);
+  //     })
 
-      //resetting isLoading to true so that 'Loading...' message show on any API call load.
-      this.setState({isLoading: true});
-  }
+  //     //resetting isLoading to true so that 'Loading...' message show on any API call load.
+  //     this.setState({isLoading: true});
+  // }
 
   componentDidMount() {
-    this.navSearch();
-    this.navSearch('kittens')
-    this.performSearch();
+    this.searching();
+    this.searching('kittens')
+  //  this.performSearch();
   }
 
   render() {
@@ -92,12 +93,12 @@ class App extends Component {
     return ( 
       <BrowserRouter>
         <div className="container">
-          <SearchForm onSearch={this.performSearch} isLoading={this.state.isLoading}/>
-          <Nav fetchData={this.navSearch}/>
+          <SearchForm onSearch={this.searching} isLoading={this.state.isLoading}/>
+          <Nav fetchData={this.searching}/>
           <Switch>   
             <Route exact path='/' render={ () => <Redirect to='/kittens' /> } />
-            <Route exact path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.performSearch}/>} />
-            <Route path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.navSearch} /> } />  
+            <Route exact path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
+            <Route path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
           </Switch>
         </div>
       </BrowserRouter> 
