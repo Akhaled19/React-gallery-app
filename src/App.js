@@ -83,9 +83,7 @@ class App extends Component {
   // }
 
   componentDidMount() {
-    this.searching();
     this.searching('kittens')
-  //  this.performSearch();
   }
 
   render() {
