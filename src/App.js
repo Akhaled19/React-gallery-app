@@ -94,6 +94,7 @@ class App extends Component {
         <div className="container">
           <SearchForm onSearch={this.searching} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.searching}/>
+          
           <Switch>   
             <Route exact path='/' render={ () => <Redirect  to='/kittens' isLoading={this.state.isLoading} /> } /> 
             <Route exact path='/search/:searchedQuery' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />

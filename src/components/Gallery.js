@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {withRouter} from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import Photo from './Photo';
 import NoResultFound from './NoResultFound';
@@ -7,9 +8,11 @@ import NoResultFound from './NoResultFound';
 //photo container where data can be managed with state
 class Gallery extends Component {
 
-    // componentDidMount() {
-    //    let routeName = this.props.location.
-    // } 
+    componentDidMount() {
+       let routeName = this.props.location.pathname.replace('/', '');
+       this.props.fetchData(routeName);
+       console.log(routeName);
+    } 
 
     render() {
         const result = this.props.data;
@@ -25,9 +28,9 @@ class Gallery extends Component {
                 );
             });    
         } else {
-            return(
-               <NoResultFound />
-            );
+            
+            photoArray = <NoResultFound />
+            
         }    
     
         return(
@@ -50,4 +53,4 @@ class Gallery extends Component {
     }
     
 }
-export default Gallery;
+export default withRouter(Gallery);
