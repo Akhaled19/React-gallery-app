@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from 'react';
 //import PropTypes from 'prop-types';
 import Photo from './Photo';
-import NotFound from './NotFound';
+import NoResultFound from './NoResultFound';
 
 
 //photo container where data can be managed with state
 class Gallery extends Component {
-  
+
+    // componentDidMount() {
+    //    let routeName = this.props.location.
+    // } 
+
     render() {
         const result = this.props.data;
         let photoArray;
@@ -22,7 +26,7 @@ class Gallery extends Component {
             });    
         } else {
             return(
-               <NotFound />
+               <NoResultFound />
             );
         }    
     

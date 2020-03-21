@@ -14,6 +14,7 @@ import './index.css';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
+import NotFound from './components/NotFound';
 
 
 //const navQuery = 'sea%2C+clouds%2C+nature';
@@ -94,9 +95,10 @@ class App extends Component {
           <SearchForm onSearch={this.searching} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.searching}/>
           <Switch>   
-            <Route exact path='/' render={ () => <Redirect to='/kittens' /> } />
-            <Route exact path='/search/:query' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
+            <Route exact path='/' render={ () => <Redirect  to='/kittens' isLoading={this.state.isLoading} /> } /> 
+            <Route exact path='/search/:searchedQuery' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
             <Route path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
+            <Route component={NotFound}/>
           </Switch>
         </div>
       </BrowserRouter> 
