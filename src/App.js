@@ -33,7 +33,7 @@ class App extends Component {
     }  
   }
 
-  //retrieve data for nav links
+  //retrieve data
   searching = (query) => {
     //save the url as a variable 
     const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
@@ -94,11 +94,11 @@ class App extends Component {
         <div className="container">
           <SearchForm onSearch={this.searching} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.searching}/>
-          
+
           <Switch>   
-            <Route exact path='/' render={ () => <Redirect  to='/kittens' isLoading={this.state.isLoading} /> } /> 
-            <Route exact path='/search/:searchedQuery' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
-            <Route path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
+            <Route exact strict path='/' render={ (props) => <Redirect  to='/kittens' isLoading={this.state.isLoading} /> } /> 
+            <Route exact strict path='/search/:searchedQuery' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
+            <Route exact strict path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
             <Route component={NotFound}/>
           </Switch>
         </div>
