@@ -9,9 +9,10 @@ import NoResultFound from './NoResultFound';
 class Gallery extends Component {
 
     componentDidMount() {
-       let routeName = this.props.location.pathname.replace('/', '');
-       this.props.fetchData(routeName);
-       console.log(routeName);
+        const { match: {params} } = this.props;
+       //let routeName = this.props.history.location.pathname.replace('/', '');
+       this.props.fetchData(params.searchedQuery);
+       //console.log(routeName);
     } 
 
     render() {
