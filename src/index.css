@@ -1,7 +1,10 @@
 body {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  color: #3f4850;
+  background-image: url(/images/unicorn-skin.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 h2 {
@@ -76,8 +79,8 @@ input {
 }
 
 .photo-container ul li {
-  width: 220px;
-  height: 165px;
+  width: 230px;
+  height: 235px;
   overflow: hidden;
   margin-bottom: 15px;
 }

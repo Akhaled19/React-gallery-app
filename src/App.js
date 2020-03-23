@@ -84,7 +84,7 @@ class App extends Component {
   // }
 
   componentDidMount() {
-    this.searching('kittens')
+    this.searching('travel')
   }
 
   render() {
@@ -96,9 +96,9 @@ class App extends Component {
           <Nav fetchData={this.searching}/>
 
           <Switch>   
-            <Route exact strict path='/' render={ (props) => <Redirect  to='/kittens' isLoading={this.state.isLoading} /> } /> 
+            <Route exact path='/' render={ (props) => <Redirect  to='/travel' isLoading={this.state.isLoading} /> } /> 
             <Route exact strict path='/search/:searchedQuery' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
-            <Route exact strict path='/(kittens|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
+            <Route exact strict path='/(travel|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
             <Route component={NotFound}/>
           </Switch>
         </div>
