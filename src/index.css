@@ -17,6 +17,7 @@ h2 {
   font-size: 2em;
   margin: 52px 0 40px;
   text-transform: capitalize;
+  color: DarkGoldenRod;
 }
 
 ul {
@@ -36,7 +37,7 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
+  background-color: LightSeaGreen;
   color: white;
   font-size: 17px;
   border: none;
@@ -54,6 +55,7 @@ input {
   border-right: none;
   border-radius: 0.35em 0 0 0.35em;
   outline: none;
+  color: DarkGoldenRod;
 }
 
 .main-nav li {
@@ -63,17 +65,17 @@ input {
 
 .main-nav a {
   display: inline-flex;
-  background: #438bbd;
+  background: LightSeaGreen;
   border-radius: 10px;
   padding: 25px;
   margin-right: 10px;
-  color: #fff;
+  color: Bisque
 }
 
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: MediumTurquoise;
 }
 
 .photo-container ul {
@@ -134,5 +136,6 @@ input {
   .main-nav li {
     margin: 10px;
     width: 100px;
+    color: DarkGoldenRod;
   }
 }
