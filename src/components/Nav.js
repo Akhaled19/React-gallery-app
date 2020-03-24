@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink, BrowserRouter} from 'react-router-dom';
 //import PropTypes from 'prop-types';
-
 //Nav component for the apps navigation links 
 const Nav = (props) => {
     

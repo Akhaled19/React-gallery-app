@@ -10,9 +10,7 @@ class Gallery extends Component {
 
     componentDidMount() {
         const { match: {params} } = this.props;
-       //let routeName = this.props.history.location.pathname.replace('/', '');
-       this.props.fetchData(params.searchedQuery);
-       //console.log(routeName);
+        this.props.fetchData(params.searchedQuery);
     } 
 
     render() {
@@ -20,6 +18,7 @@ class Gallery extends Component {
         let photoArray;
         let title = this.props.query;
 
+        //if there is no result show the NoResultFound component
         if(result.length > 0) {
             photoArray =  result.map(photo => {
                 const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;

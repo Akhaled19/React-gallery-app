@@ -56,7 +56,7 @@ input {
   border-right: none;
   border-radius: 0.35em 0 0 0.35em;
   outline: none;
-  color: DarkGoldenRod;
+  color: Bisque;
 }
 
 .main-nav li {
@@ -101,11 +101,6 @@ input {
   transition: transform 1.25s;
   image-rendering: pixelated;
   border: 1px solid black;
-  
-
-  
-  
-
 }
 
 .photo-container li:hover img {

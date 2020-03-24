@@ -83,6 +83,7 @@ class App extends Component {
   //     this.setState({isLoading: true});
   // }
 
+  //home pages renders trave images 
   componentDidMount() {
     this.searching('travel')
   }
