@@ -12,8 +12,6 @@ body {
 .not-found {
   background-position: 0 0, 0 10px, 0 0;
   background-blend-mode: hard-light;
-  image-rendering: pixelated;
-
 }
 
 h2 {
@@ -101,6 +99,13 @@ input {
   height: 80%;
   transform: scale(1.25);
   transition: transform 1.25s;
+  image-rendering: pixelated;
+  border: 1px solid black;
+  
+
+  
+  
+
 }
 
 .photo-container li:hover img {
@@ -114,6 +119,21 @@ input {
 
 .return {
   
+}
+
+.loading {
+  border: 6px solid #f3f3f3; 
+  border-top: 6px solid #db3498; 
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: 28em;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media only screen and (max-width: 767px)  {
