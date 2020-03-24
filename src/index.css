@@ -7,6 +7,12 @@ body {
   
 }
 
+.not-found {
+  background-position: 0 0, 0 10px, 0 0;
+  background-blend-mode: hard-light;
+
+}
+
 h2 {
   font-size: 2em;
   margin: 52px 0 40px;
@@ -93,6 +99,7 @@ input {
 
 .photo-container li:hover img {
   transform: scale(1.65);
+  cursor: pointer;
 }
 
 .photo-container .not-found {

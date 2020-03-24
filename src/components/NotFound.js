@@ -6,6 +6,7 @@ import React from 'react';
 //added a Return Home button 
 const NotFound = () => (
     <div className='not-found'>
+        
         <h2>Page Not Found</h2> 
         <a href='/'>Return Home</a>   
     </div>
