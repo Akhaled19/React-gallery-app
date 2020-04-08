@@ -7,7 +7,7 @@ import NoResultFound from './NoResultFound';
 
 //photo container where data can be managed with state
 class Gallery extends Component {
-
+    //this allows to search using the URL parameters
     componentDidMount() {
         const { match: {params} } = this.props;
         this.props.fetchData(params.searchedQuery);

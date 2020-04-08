@@ -28,7 +28,7 @@ class App extends Component {
     this.state = {
       photos: [], 
       queryString: '',
-      search: '',
+      //travel: [],
       isLoading: true,
     }  
   }
@@ -42,10 +42,11 @@ class App extends Component {
     //handle data & setting the value back to false 
       .then( response => { 
         this.setState({
-          //sets query props to the current selected tag 
-          queryString: query,
+          
           //sets retrieved api data to the photos array
           photos: response.data.photos.photo,
+          //sets query props to the current selected tag 
+          queryString: query,
           isLoading: false
         });
       })
@@ -85,7 +86,7 @@ class App extends Component {
 
   //home pages renders trave images 
   componentDidMount() {
-    this.searching('travel')
+    this.searching('travel');
   }
 
   render() {
@@ -97,9 +98,9 @@ class App extends Component {
           <Nav fetchData={this.searching}/>
 
           <Switch>   
-            <Route exact path='/' render={ (props) => <Redirect  to='/travel' isLoading={this.state.isLoading} /> } /> 
+            <Route exact strict path='/' render={ () => <Redirect  to='/travel' isLoading={this.state.isLoading} /> } /> 
             <Route exact strict path='/search/:searchedQuery' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching}/>} />
-            <Route exact strict path='/(travel|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
+            <Route path='/(travel|sea|clouds|nature)' render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryString} isLoading={this.state.isLoading} fetchData={this.searching} /> } />  
             <Route component={NotFound}/>
           </Switch>
         </div>

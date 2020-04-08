@@ -10,9 +10,30 @@ body {
 }
 
 .not-found {
-  background-position: 0 0, 0 10px, 0 0;
-  background-blend-mode: hard-light;
+  margin: 100000;
+  padding: 0;
+  font-family: montserrat, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  color: #343434;
+  
 }
+
+.not-found h1 {
+  font-family: montserrat, sans-serif;
+  font-size: 224px;
+  margin: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -20px;
+  background: url(/images/neon-colors-on-black-background.jpg) center no-repeat;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
 
 h2 {
   font-size: 2em;
@@ -122,6 +143,7 @@ input {
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  top: 50%;
   margin-left: 28em;
   animation: spin 2s linear infinite;
 }

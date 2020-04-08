@@ -7,8 +7,10 @@ import {withRouter} from 'react-router-dom';
 class SearchForm extends Component{
 
     state = {
-        searchText: ''
+        searchText: '',
+        query: this.props.match.params.queryString
     }
+
 
     //This methods handles updating the searchText state when a user types.
     onSearchChange = e => {
@@ -26,7 +28,7 @@ class SearchForm extends Component{
         let path = `/search/${searchedQuery}`;
         console.log(path);
         this.props.history.push(path);
-        this.props.onSearch(this.state.searchText);
+        this.props.onSearch(this.query.value);
         e.currentTarget.reset();
     }
 
