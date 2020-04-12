@@ -3,7 +3,7 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect 
+  Redirect,
 } from 'react-router-dom';
 
 import axios from 'axios';
@@ -19,22 +19,45 @@ import NotFound from './components/NotFound';
 
 //const navQuery = 'sea%2C+clouds%2C+nature';
 
+//pushes the key back to the window 
+const pushSate = ( obj, url)=> {
+  window.history.pushState(obj, '', url);
+}
+//handles browser's back and forward button 
+const onPopstate= handler => {
+    window.onpopstate = handler;
+}
+
 class App extends Component {
 
   constructor(props) {
     //binding THIS keyword to this class
     super(props);
+    //this is for browser back & forward button
+    this.params = {};
     //initial props state
     this.state = {
       photos: [], 
       queryString: '',
-      //travel: [],
       isLoading: true,
-    }  
+    };  
+  }
+
+   //home pages renders trave images 
+   componentDidMount = () => {
+    this.searching('travel');
+
+    //this is for browser back & forward button
+    onPopstate((event) => {
+      this.setState({
+        key: (event.state || {}).key
+      })
+    });
   }
 
   //retrieve data
   searching = (query) => {
+  
     //save the url as a variable 
     const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
     
@@ -56,7 +79,11 @@ class App extends Component {
       });
 
       //resetting isLoading to true so that 'Loading...' message show on any API call load.
-      this.setState({isLoading: true});
+       this.setState({isLoading: true});
+      pushSate(
+        { key: query},
+        `/${query}`
+      );
   }
 
  
@@ -83,11 +110,6 @@ class App extends Component {
   //     //resetting isLoading to true so that 'Loading...' message show on any API call load.
   //     this.setState({isLoading: true});
   // }
-
-  //home pages renders trave images 
-  componentDidMount() {
-    this.searching('travel');
-  }
 
   render() {
     console.log(this.state.photos);
