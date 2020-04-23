@@ -5,6 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { BrowserHistory } from "react-history";
 
 import axios from 'axios';
 import config from './Config';
@@ -16,17 +17,17 @@ import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
 import NotFound from './components/NotFound';
 
+const history = BrowserHistory();
 
-//const navQuery = 'sea%2C+clouds%2C+nature';
 
 //pushes the key back to the window 
-const pushSate = ( obj, url)=> {
-  window.history.pushState(obj, '', url);
-}
+// const pushSate = ( obj, url)=> {
+//   window.history.pushState(obj, '', url);
+// }
 //handles browser's back and forward button 
-const onPopstate= handler => {
-    window.onpopstate = handler;
-}
+// const onPopstate= handler => {
+//     window.onpopstate = handler;
+// }
 
 class App extends Component {
 
@@ -34,7 +35,7 @@ class App extends Component {
     //binding THIS keyword to this class
     super(props);
     //this is for browser back & forward button
-    this.params = {};
+    // this.params = {};
     //initial props state
     this.state = {
       photos: [], 
@@ -48,11 +49,11 @@ class App extends Component {
     this.searching('travel');
 
     //this is for browser back & forward button
-    onPopstate((event) => {
-      this.setState({
-        key: (event.state || {}).key
-      })
-    });
+    // onPopstate((event) => {
+    //   this.setState({
+    //     key: (event.state || {}).key
+    //   })
+    // });
   }
 
   //retrieve data
@@ -80,10 +81,10 @@ class App extends Component {
 
       //resetting isLoading to true so that 'Loading...' message show on any API call load.
        this.setState({isLoading: true});
-      pushSate(
-        { key: query},
-        `/${query}`
-      );
+      // pushSate(
+      //   { key: query},
+      //   `/${query}`
+      // );
   }
 
  
@@ -114,7 +115,7 @@ class App extends Component {
   render() {
     console.log(this.state.photos);
     return ( 
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <div className="container">
           <SearchForm onSearch={this.searching} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.searching}/>

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import {withRouter} from 'react-router-dom';
-//import PropTypes from 'prop-types';
 import Photo from './Photo';
 import NoResultFound from './NoResultFound';
 
@@ -14,6 +13,7 @@ class Gallery extends Component {
     } 
 
     render() {
+        const {history} = this.props;
         const result = this.props.data;
         let photoArray;
         let title = this.props.query;

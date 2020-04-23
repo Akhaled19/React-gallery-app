@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 //import queryString from 'query-string';
-//import PropTypes from 'prop-types';
+
+import createHistory from "history/createBrowserHistory";
+
+const history = createHistory();
+
 
 //SearchForm component where data can be managed with state
 class SearchForm extends Component{
 
     state = {
         searchText: '',
-        query: this.props.match.params.queryString
+        //query: this.props.match.params.queryString
+        //query: ''
+    }
+
+    componentDidMount() {
+        this.setQuery();
+    }
+
+    componentDidUpdate(prevProp) {
+        if(prevProp.match.params.query !== this.props.match.params.query) {
+            this.setQuery();
+        }
+    }
+
+    setQuery = () => {
+        const { query = ""} = this.props.match.params;
+        this.setState({
+            searchText: query, query
+        });
     }
 
 
@@ -25,10 +47,12 @@ class SearchForm extends Component{
     handleSubmit = e => {
         e.preventDefault();
         let searchedQuery = this.query.value;
+        //let searchedQuery = this.state.value;
         let path = `/search/${searchedQuery}`;
         console.log(path);
         this.props.history.push(path);
-        this.props.onSearch(this.query.value);
+        //history.push(path);
+        this.props.onSearch(searchedQuery);
         e.currentTarget.reset();
     }
 
