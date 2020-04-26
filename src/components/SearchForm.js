@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-//import queryString from 'query-string';
 
-import createHistory from "history/createBrowserHistory";
-
-const history = createHistory();
 
 
 //SearchForm component where data can be managed with state
@@ -61,8 +57,8 @@ class SearchForm extends Component{
         //let searchedQuery = this.state.value;
         let path = `/search/${searchedQuery}`;
         console.log(path);
-        //this.props.history.push(path);
-        history.push(path);
+        this.props.history.push(path);
+        //history.push(path);
         this.props.onSearch(searchedQuery);
         e.currentTarget.reset();
     }

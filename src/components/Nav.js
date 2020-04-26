@@ -1,11 +1,11 @@
 import React from 'react';
-import {NavLink, BrowserRouter} from 'react-router-dom';
-//import PropTypes from 'prop-types';
+import {NavLink} from 'react-router-dom';
+
 //Nav component for the apps navigation links 
 const Nav = (props) => {
     
     return(
-        <BrowserRouter>
+        //<BrowserRouter>
             <nav className='main-nav'>
                 <ul className='.list-inline'>
                     <li><NavLink to='/sea' onClick={ () => props.fetchData('sea')}>Sea</NavLink></li>
@@ -13,7 +13,7 @@ const Nav = (props) => {
                     <li><NavLink to='/nature' onClick={ () => props.fetchData('nature')}>Nature</NavLink></li>
                 </ul>
             </nav>
-        </BrowserRouter>
+        //</BrowserRouter>
     );
     
 }
