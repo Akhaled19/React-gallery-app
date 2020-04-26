@@ -6,14 +6,33 @@ import NoResultFound from './NoResultFound';
 
 //photo container where data can be managed with state
 class Gallery extends Component {
+
+    constructor() {
+        super();
+        this.setState = {
+            oldValue:''
+        }
+    }
     //this allows to search using the URL parameters
-    componentDidMount() {
-        const { match: {params} } = this.props;
-        this.props.fetchData(params.searchedQuery);
-    } 
+    // componentDidMount() {
+    //     const { match: {params} } = this.props;
+    //     this.props.fetchData(params.searchedQuery);
+    // } 
+
+    componentDidUpdate(prevProps) {
+        const {
+          match: { params },
+        } = this.props;
+    
+        const newValue = params && params[0];
+        if (newValue !== this.state.oldValue) {
+          this.setState({ oldValue: newValue });
+          this.props.fetchData(params.searchedQuery);
+        }
+      }
 
     render() {
-        const {history} = this.props;
+        
         const result = this.props.data;
         let photoArray;
         let title = this.props.query;

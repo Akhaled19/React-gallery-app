@@ -31,7 +31,7 @@ class SearchForm extends Component{
 
     const newValue = params && params[0];
     if (prevProps.match.params.searchText !== this.props.match.searchText) {
-        //this.setQuery;
+      //this.setQuery;
       this.setState({ oldValue: newValue });
       this.props.onSearch(params.searchedQuery);
     }

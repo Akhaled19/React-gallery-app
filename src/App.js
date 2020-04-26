@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useHistory,
 } from 'react-router-dom';
 import createHistory from "history/createBrowserHistory"
 
@@ -17,7 +18,7 @@ import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
 import NotFound from './components/NotFound';
 
-const history = createHistory();
+
 
 
 //pushes the key back to the window 
@@ -30,6 +31,7 @@ const history = createHistory();
 // }
 
 class App extends Component {
+  
 
   constructor(props) {
     //binding THIS keyword to this class
@@ -112,7 +114,7 @@ class App extends Component {
   //     //resetting isLoading to true so that 'Loading...' message show on any API call load.
   //     this.setState({isLoading: true});
   // }
-
+  
   render() {
     console.log(this.state.photos);
     return ( 
