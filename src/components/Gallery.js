@@ -6,10 +6,9 @@ import NoResultFound from './NoResultFound';
 
 //photo container where data can be managed with state
 class Gallery extends Component {
-
     constructor() {
         super();
-        this.setState = {
+        this.state = {
             oldValue:''
         };
     }
@@ -27,7 +26,7 @@ class Gallery extends Component {
         const newValue = params && params[0];
         if (newValue !== this.state.oldValue) {
           this.setState({ oldValue: newValue });
-          this.props.fetchData(params.searchedQuery);
+          this.props.fetchData(newValue);
         }
       }
 
