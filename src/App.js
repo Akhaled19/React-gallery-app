@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import { BrowserHistory } from "react-history";
+import createHistory from "history/createBrowserHistory"
 
 import axios from 'axios';
 import config from './Config';
@@ -17,7 +17,7 @@ import Gallery from './components/Gallery';
 import SearchForm from './components/SearchForm';
 import NotFound from './components/NotFound';
 
-const history = BrowserHistory();
+const history = createHistory();
 
 
 //pushes the key back to the window 
@@ -46,6 +46,7 @@ class App extends Component {
 
    //home pages renders trave images 
    componentDidMount = () => {
+
     this.searching('travel');
 
     //this is for browser back & forward button
@@ -115,7 +116,7 @@ class App extends Component {
   render() {
     console.log(this.state.photos);
     return ( 
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <div className="container">
           <SearchForm onSearch={this.searching} isLoading={this.state.isLoading}/>
           <Nav fetchData={this.searching}/>
