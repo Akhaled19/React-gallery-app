@@ -11,7 +11,7 @@ class Gallery extends Component {
         super();
         this.setState = {
             oldValue:''
-        }
+        };
     }
     //this allows to search using the URL parameters
     // componentDidMount() {

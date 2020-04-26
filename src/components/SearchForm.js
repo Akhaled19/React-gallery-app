@@ -16,7 +16,7 @@ class SearchForm extends Component{
             searchText: '',
             //query: this.props.match.params.queryString
             //query: ''
-            oldValue: ''
+            //oldValue: ''
         }
     }
 
@@ -24,25 +24,25 @@ class SearchForm extends Component{
     //     this.setQuery();
     // }
     
-    componentDidUpdate(prevProps) {
-    const {
-      match: { params },
-    } = this.props;
+//     componentDidUpdate(prevProps) {
+//     const {
+//       match: { params },
+//     } = this.props;
 
-    const newValue = params && params[0];
-    if (prevProps.match.params.searchText !== this.props.match.searchText) {
-      //this.setQuery;
-      this.setState({ oldValue: newValue });
-      this.props.onSearch(params.searchedQuery);
-    }
-  }
+//     const newValue = params && params[0];
+//     if (prevProps.match.params.searchText !== this.props.match.searchText) {
+//       //this.setQuery;
+//       this.setState({ oldValue: newValue });
+//       this.props.onSearch(params.searchedQuery);
+//     }
+//   }
 
-  setQuery = () => {
-    const { query = ""} = this.props.match.params;
-    this.setState({
-        searchText: query, query
-    });
-}
+//   setQuery = () => {
+//     const { query = ""} = this.props.match.params;
+//     this.setState({
+//         searchText: query, query
+//     });
+// }
 
 
     //This methods handles updating the searchText state when a user types.
@@ -57,12 +57,12 @@ class SearchForm extends Component{
     //push that route to the current route 
     handleSubmit = e => {
         e.preventDefault();
-        //let searchedQuery = this.query.value;
-        let searchedQuery = this.state.value;
+        let searchedQuery = this.query.value;
+        //let searchedQuery = this.state.value;
         let path = `/search/${searchedQuery}`;
         console.log(path);
-        this.props.history.push(path);
-        //history.push(path);
+        //this.props.history.push(path);
+        history.push(path);
         this.props.onSearch(searchedQuery);
         e.currentTarget.reset();
     }
