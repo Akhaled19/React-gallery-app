@@ -4,7 +4,6 @@ import {
   Switch,
   Route,
   Redirect,
-  useHistory,
 } from 'react-router-dom';
 
 
@@ -20,25 +19,11 @@ import NotFound from './components/NotFound';
 
 
 
-
-//pushes the key back to the window 
-// const pushSate = ( obj, url)=> {
-//   window.history.pushState(obj, '', url);
-// }
-//handles browser's back and forward button 
-// const onPopstate= handler => {
-//     window.onpopstate = handler;
-// }
-
 class App extends Component {
   
-
   constructor(props) {
     //binding THIS keyword to this class
     super(props);
-    //this is for browser back & forward button
-    // this.params = {};
-    //initial props state
     this.state = {
       photos: [], 
       queryString: '',
@@ -48,18 +33,10 @@ class App extends Component {
 
    //home pages renders trave images 
    componentDidMount = () => {
-
     this.searching('travel');
-
-    //this is for browser back & forward button
-    // onPopstate((event) => {
-    //   this.setState({
-    //     key: (event.state || {}).key
-    //   })
-    // });
   }
 
-  //retrieve data
+  //retrieve data from the API
   searching = (query) => {
   
     //save the url as a variable 
@@ -69,7 +46,6 @@ class App extends Component {
     //handle data & setting the value back to false 
       .then( response => { 
         this.setState({
-          
           //sets retrieved api data to the photos array
           photos: response.data.photos.photo,
           //sets query props to the current selected tag 
@@ -78,42 +54,13 @@ class App extends Component {
         });
       })
       .catch( error => {
-        //handle error
         console.log('Error fetching and parsing data: ', error);
       });
 
       //resetting isLoading to true so that 'Loading...' message show on any API call load.
        this.setState({isLoading: true});
-      // pushSate(
-      //   { key: query},
-      //   `/${query}`
-      // );
   }
 
- 
-
-  //retrieve data for search input 
-  // performSearch = (query) => {
-  //   const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config.My_Key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
-    
-  //   axios.get(flickrURL)
-  //     .then( response => {
-  //       //handle data
-  //       this.setState({
-  //         queryString: query,
-  //         photos: response.data.photos.photo,
-  //         isLoading: false
-  //       })
-  //       console.log(query);
-  //     })
-  //     .catch( error => {
-  //       //handle error
-  //       console.log('Error fetching and parsing data: ', error);
-  //     })
-
-  //     //resetting isLoading to true so that 'Loading...' message show on any API call load.
-  //     this.setState({isLoading: true});
-  // }
   
   render() {
     console.log(this.state.photos);

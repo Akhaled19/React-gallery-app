@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 
 
-
 //SearchForm component where data can be managed with state
 class SearchForm extends Component{
 
@@ -10,29 +9,8 @@ class SearchForm extends Component{
         super();
         this.state = {
             searchText: '',
-            //query: this.props.match.params.queryString
-            //query: ''
-            oldValue: ''
         }
     }
-
-    // componentDidMount() {
-    //     this.setQuery();
-    // }
-    
-    componentDidUpdate(prevProps) {
-        const {
-          match: { params },
-        } = this.props;
-    
-        const newValue = params && params[0];
-        if (newValue !== this.state.oldValue) {
-          this.setState({ oldValue: newValue });
-          this.props.onSearch(newValue);
-        }
-      }
-
-
 
     //This methods handles updating the searchText state when a user types.
     onSearchChange = e => {
@@ -43,15 +21,13 @@ class SearchForm extends Component{
     
     //This method handle what to do when a user hits submit: 
     //It grabs the query value to create a route path with it 
-    //push that route to the current route 
+    //push that route to the current route
+    //resets the search form 
     handleSubmit = e => {
         e.preventDefault();
         let searchedQuery = this.query.value;
-        //let searchedQuery = this.state.value;
         let path = `/search/${searchedQuery}`;
-        console.log(path);
-        //this.props.history.push(path);
-        //history.push(path);
+        this.props.history.push(path);
         this.props.onSearch(searchedQuery);
         e.currentTarget.reset();
     }

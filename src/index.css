@@ -3,23 +3,17 @@ body {
   font-family: 'Open Sans', sans-serif;
   background-image: url(/images/unicorn-skin.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
-  image-rendering: pixelated;
-  
-  
+  background-size: 100%;
+  image-rendering: pixelated; 
 }
 
 .not-found {
-  margin: 100000;
-  padding: 0;
+  padding-top: 80px;
   font-family: montserrat, sans-serif;
   min-height: 100vh;
   width: 100%;
-  position: absolute;
-  top: 50%;
   text-align: center;
-  color: #343434;
-  
+  color: #464545;
 }
 
 .not-found h1 {
@@ -29,9 +23,23 @@ body {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -20px;
-  background: url(/images/neon-colors-on-black-background.jpg) center no-repeat;
-  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(125deg, #b8e, #8ae1a0eb);
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.return {
+  text-decoration: none;
+  color:#5B6DCD;
+  background: transparent;
+  border: solid #8c98dc 5px;
+  padding: 12px 24px;
+  display: inline-block;
+}
+
+.return:hover {
+  border: solid LightSeaGreen 5px;
+  color: darkcyan;
 }
 
 
@@ -133,9 +141,6 @@ input {
   width: 100%;
 }
 
-.return {
-  
-}
 
 .loading {
   border: 6px solid #f3f3f3; 

@@ -5,7 +5,6 @@ import {NavLink} from 'react-router-dom';
 const Nav = (props) => {
     
     return(
-        //<BrowserRouter>
             <nav className='main-nav'>
                 <ul className='.list-inline'>
                     <li><NavLink to='/sea' onClick={ () => props.fetchData('sea')}>Sea</NavLink></li>
@@ -13,8 +12,6 @@ const Nav = (props) => {
                     <li><NavLink to='/nature' onClick={ () => props.fetchData('nature')}>Nature</NavLink></li>
                 </ul>
             </nav>
-        //</BrowserRouter>
     );
-    
 }
 export default Nav;

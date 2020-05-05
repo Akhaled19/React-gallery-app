@@ -12,18 +12,15 @@ class Gallery extends Component {
             oldValue:''
         };
     }
-    //this allows to search using the URL parameters
-    // componentDidMount() {
-    //     const { match: {params} } = this.props;
-    //     this.props.fetchData(params.searchedQuery);
-    // } 
 
     componentDidUpdate(prevProps) {
         const {
           match: { params },
         } = this.props;
-    
+        
+
         const newValue = params && params[0];
+        //if the state changes trigger the fetchData API
         if (newValue !== this.state.oldValue) {
           this.setState({ oldValue: newValue });
           this.props.fetchData(newValue);
@@ -31,12 +28,10 @@ class Gallery extends Component {
       }
 
     render() {
-        
         const result = this.props.data;
         let photoArray;
         let title = this.props.query;
 
-        //if there is no result show the NoResultFound component
         if(result.length > 0) {
             photoArray =  result.map(photo => {
                 const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
@@ -44,7 +39,8 @@ class Gallery extends Component {
                 return(
                         <Photo url={url} key={photo.id}/>
                 );
-            });    
+            }); 
+        //if there is no result show the NoResultFound component   
         } else {
             
             photoArray = <NoResultFound />
