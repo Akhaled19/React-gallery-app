@@ -1,6 +1,6 @@
 A galley that get photos from Flickr API 
 
-To get up and running, create a config file ``` var config = {My_key: 'YOURAPIKEY' , My_Secret: `YOURAPISECRETKEY` }
+To get up and running, create a config file ``` var config = {My_key: `YOURAPIKEY` , My_Secret: `YOURAPISECRETKEY` }
 
 export default config; ```
 
