@@ -9,7 +9,7 @@ import {
 
 import axios from 'axios';
 import config from './Config';
-import './index.css';
+import './css/index.css';
 
 //import components 
 import Nav from './components/Nav';
