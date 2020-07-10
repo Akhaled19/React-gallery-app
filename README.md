@@ -1,14 +1,18 @@
-A galley that get photos by search and navigation links from Flickr API
+A galley that fetches photos by search and navigation links from Flickr API
 
-##Project Features 
+## Project Features 
 * Ability to see Travel Flickr API photos when rendering to the home page
 * Ability to search the Flickr API using the search form
 * Ability to click the navigation links to see sea, clouds, nature Flickr API photos
 * Ability to click broswer back and forward button to see previous navigations
 
-To get up and running, create a config file ``` var config = {My_key: `YOURAPIKEY` , My_Secret: `YOURAPISECRETKEY` }
+To get up and running, create a config file 
+``` 
+var config = {My_key: `YOURAPIKEY` , My_Secret: `YOURAPISECRETKEY` }
 
-export default config; ```
+export default config; 
+
+```
 
 ## Available Scripts
 
